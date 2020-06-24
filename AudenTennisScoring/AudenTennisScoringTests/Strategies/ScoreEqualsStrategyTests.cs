@@ -15,7 +15,7 @@ namespace AudenTennisScoringTests.Strategies
         [TestCaseSource(nameof(CreateAcceptStrategies))]
         public void Strategy_Accepts_Correctly(Player player1, Player player2, int scoreLoop1, int scoreLoop2, bool expectedResult )
         {
-            var scoreEquals = new ScoreEqualsStrategy();
+            var strategy = new ScoreEqualsStrategy();
             for (var i = 0; i < scoreLoop1; i++)
             {
                 player1.Scores();
@@ -26,7 +26,7 @@ namespace AudenTennisScoringTests.Strategies
                 player2.Scores();
             }
 
-            var actualResult = scoreEquals.Accepts(player1, player2);
+            var actualResult = strategy.Accepts(player1, player2);
 
             actualResult.Should().Be(expectedResult);
         }
@@ -45,7 +45,7 @@ namespace AudenTennisScoringTests.Strategies
         [TestCaseSource(nameof(CreateScores))]
         public void Strategy_Score_Correctly(Player player1, Player player2, int scoreLoop1, int scoreLoop2, string expectedResult)
         {
-            var scoreEquals = new ScoreEqualsStrategy();
+            var strategy = new ScoreEqualsStrategy();
             for (var i = 0; i < scoreLoop1; i++)
             {
                 player1.Scores();
@@ -56,7 +56,7 @@ namespace AudenTennisScoringTests.Strategies
                 player2.Scores();
             }
 
-            var actualResult = scoreEquals.GetScore(player1, player2);
+            var actualResult = strategy.GetScore(player1, player2);
 
             actualResult.Should().BeEquivalentTo(expectedResult);
         }

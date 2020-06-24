@@ -2,6 +2,11 @@
 {
     public class Player : IPlayer
     {
+        /*
+         * I have run out of time so there is no logic in here to handle scoring above deuce when
+         * a player might go to advantage and then back to deuce again.  Also, I would probably change
+         * points to an enum so it is more obvious and not using a magic number if I had more time. 
+         */
         private int _points;
         public string Name { get; set; }
         public int Points => _points;
