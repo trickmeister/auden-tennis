@@ -21,10 +21,23 @@ namespace AudenTennisScoring
         public void Player1Scores()
         {
             _player1.Scores();
+            CreateScore();
+        }
+
+
+        public void Player2Scores()
+        {
+            _player2.Scores();
+            CreateScore();
+        }
+        private void CreateScore()
+        {
             var scoreConversion = _strategies.First(x => x.Accepts(_player1, _player2));
             var score = scoreConversion.GetScore(_player1, _player2);
 
             Score = score;
         }
+
+        
     }
 }
