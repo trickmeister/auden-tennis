@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AudenTennisScoring;
+﻿using AudenTennisScoring;
 using AudenTennisScoring.Strategies;
 using FluentAssertions;
 using Moq;

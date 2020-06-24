@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AudenTennisScoring.Strategies
+﻿namespace AudenTennisScoring.Strategies
 {
     public class ScoreEqualsStrategy : IScoreConversionStrategies
     {
