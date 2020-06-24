@@ -1,28 +1,29 @@
 ﻿namespace AudenTennisScoring
 {
-    public class Player
+    public class Player : IPlayer
     {
+        private int _points;
         public string Name { get; set; }
-        public int Points { get; set; }
+        public int Points => _points;
 
         public void Scores()
         {
-            if (Points < 30)
+            if (_points < 30)
             {
-                Points += 15;
+                _points += 15;
                 return;
             }
 
-            switch (Points)
+            switch (_points)
             {
                 case 30:
-                    Points += 10;
+                    _points += 10;
                     return;
                 case 40:
-                    Points += 1;
+                    _points += 1;
                     return;
                 case 41:
-                    Points += 1;
+                    _points += 1;
                     break;
             }
         }
