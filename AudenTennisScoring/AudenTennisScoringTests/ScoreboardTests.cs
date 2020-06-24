@@ -1,4 +1,6 @@
-﻿using AudenTennisScoring;
+﻿using System.Collections.Generic;
+using AudenTennisScoring;
+using AudenTennisScoring.Strategies;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -11,16 +13,24 @@ namespace AudenTennisScoringTests
         [Test]
         public void Player1Scores_ScoreIsUpdated()
         {
-            var player = new Mock<IPlayer>();
-            player.Setup(x => x.Scores());
-            player.Setup(x => x.Points).Returns(15);
+            var player1 = new Mock<IPlayer>();
+            var player2 = new Mock<IPlayer>();
 
-            var scoreBoard = new Scoreboard(player.Object);
+            var strategies = new Mock<IScoreConversionStrategies>();
+
+            strategies.Setup(x => x.Accepts(It.IsAny<IPlayer>(), It.IsAny<IPlayer>())).Returns(true);
+            strategies.Setup(x => x.GetScore(player1.Object, player2.Object)).Returns("15 15");
+
+            player1.Setup(x => x.Scores());
+            player2.Setup(x => x.Scores());
+
+            player1.Setup(x => x.Points).Returns(15);
+            player2.Setup(x => x.Points).Returns(15);
+
+            var scoreBoard = new Scoreboard(player1.Object, player2.Object, new []{strategies.Object});
 
             scoreBoard.Player1Scores();
-            scoreBoard.Score.Should().Be("15");
+            scoreBoard.Score.Should().Be("15 15");
         }
     }
-
-    
 }

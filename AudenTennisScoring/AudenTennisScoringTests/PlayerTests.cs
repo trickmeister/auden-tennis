@@ -16,7 +16,7 @@ namespace AudenTennisTests
         }
 
         [TestCaseSource(nameof(CreatePoints))]
-        public void Players_Points_AreCorrectly_Calculated(int currentPoints, int expectedPoints)
+        public void Players_Points_AreCorrectly_Calculated( int expectedPoints)
         {
             _player.Scores();
             _player.Points.Should().Be(expectedPoints);
